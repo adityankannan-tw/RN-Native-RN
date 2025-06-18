@@ -6,26 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		767F2453985E40FC51F9087D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0FCA9074A34830F41BF2607E /* PrivacyInfo.xcprivacy */; };
+		E26A912BF15C454F539BF17C /* libPods-SwiftRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BCB0B78CEE7E769713874E /* libPods-SwiftRNApp.a */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		0FCA9074A34830F41BF2607E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E1B4E8A2DFC0BEF00DC2F72 /* SwiftRNApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRNApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1B4FF52E02B0F200DC2F72 /* SwiftRNApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftRNApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		86BCB0B78CEE7E769713874E /* libPods-SwiftRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D136E7ADD2DE904230E9E32 /* Pods-SwiftRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftRNApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftRNApp/Pods-SwiftRNApp.release.xcconfig"; sourceTree = "<group>"; };
+		EAF569BE957E81EC52A0D507 /* Pods-SwiftRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftRNApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftRNApp/Pods-SwiftRNApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		1E1B4F372E00509A00DC2F72 /* Exceptions for "SwiftRNApp" folder in "Compile Sources" phase from "SwiftRNApp" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = 1E1B4E862DFC0BEF00DC2F72 /* Sources */;
-			membershipExceptions = (
-				main.jsbundle,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1E1B4E8C2DFC0BEF00DC2F72 /* SwiftRNApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1E1B4F372E00509A00DC2F72 /* Exceptions for "SwiftRNApp" folder in "Compile Sources" phase from "SwiftRNApp" target */,
 			);
 			path = SwiftRNApp;
 			sourceTree = "<group>";
@@ -37,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26A912BF15C454F539BF17C /* libPods-SwiftRNApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +48,9 @@
 				1E1B4FF52E02B0F200DC2F72 /* SwiftRNApp-Bridging-Header.h */,
 				1E1B4E8C2DFC0BEF00DC2F72 /* SwiftRNApp */,
 				1E1B4E8B2DFC0BEF00DC2F72 /* Products */,
+				0FCA9074A34830F41BF2607E /* PrivacyInfo.xcprivacy */,
+				60D0C9D75DC30DE441AFE956 /* Pods */,
+				2A1E1178E2754E46F5F54409 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +62,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2A1E1178E2754E46F5F54409 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86BCB0B78CEE7E769713874E /* libPods-SwiftRNApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60D0C9D75DC30DE441AFE956 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAF569BE957E81EC52A0D507 /* Pods-SwiftRNApp.debug.xcconfig */,
+				8D136E7ADD2DE904230E9E32 /* Pods-SwiftRNApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -67,9 +86,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E1B4E982DFC0BF000DC2F72 /* Build configuration list for PBXNativeTarget "SwiftRNApp" */;
 			buildPhases = (
+				D27A9DE8A7A3D33F9D1AC709 /* [CP] Check Pods Manifest.lock */,
 				1E1B4E862DFC0BEF00DC2F72 /* Sources */,
 				1E1B4E872DFC0BEF00DC2F72 /* Frameworks */,
 				1E1B4E882DFC0BEF00DC2F72 /* Resources */,
+				5F98C943A16F0628654B7620 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -79,8 +100,6 @@
 				1E1B4E8C2DFC0BEF00DC2F72 /* SwiftRNApp */,
 			);
 			name = SwiftRNApp;
-			packageProductDependencies = (
-			);
 			productName = SwiftRNApp;
 			productReference = 1E1B4E8A2DFC0BEF00DC2F72 /* SwiftRNApp.app */;
 			productType = "com.apple.product-type.application";
@@ -124,10 +143,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767F2453985E40FC51F9087D /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F98C943A16F0628654B7620 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftRNApp/Pods-SwiftRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftRNApp/Pods-SwiftRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftRNApp/Pods-SwiftRNApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D27A9DE8A7A3D33F9D1AC709 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftRNApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1E1B4E862DFC0BEF00DC2F72 /* Sources */ = {
@@ -147,7 +209,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -197,9 +259,15 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HERMES = false;
 			};
 			name = Debug;
 		};
@@ -210,7 +278,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -253,20 +321,27 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				USE_HERMES = false;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		1E1B4E992DFC0BF000DC2F72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF569BE957E81EC52A0D507 /* Pods-SwiftRNApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftRNApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = R59GT6RRL2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -293,12 +368,13 @@
 		};
 		1E1B4E9A2DFC0BF000DC2F72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D136E7ADD2DE904230E9E32 /* Pods-SwiftRNApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftRNApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = R59GT6RRL2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -97,7 +97,7 @@ target 'SwiftRNApp' do
   use_react_native!(
     :path => '../node_modules/react-native',
     :app_path => '../',
-    :hermes_enabled => true,  # or false, depending on your RN config
+    :hermes_enabled => false,  # or false, depending on your RN config
     :fabric_enabled => false  # unless you're using the new Fabric renderer
   )
 
