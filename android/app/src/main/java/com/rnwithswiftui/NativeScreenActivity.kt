@@ -32,7 +32,7 @@ class NativeScreenActivity : Activity() {
        val submitButton = findViewById<Button>(R.id.submit_button)
        submitButton.setOnClickListener {
            val resultIntent = Intent()
-           resultIntent.putExtra("enteredNumber", "paymentSuccess")
+           resultIntent.putExtra("action", "paymentSuccess")
 
            setResult(Activity.RESULT_OK, resultIntent)
            finish()

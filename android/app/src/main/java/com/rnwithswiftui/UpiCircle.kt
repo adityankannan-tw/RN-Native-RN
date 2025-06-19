@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 
@@ -15,7 +16,7 @@ class UpiCircle : AppCompatActivity() {
         setContentView(R.layout.activity_upi_circle)
 
 
-		val sendBackButton = findViewById<ImageView>(R.id.upi_image)
+		val sendBackButton = findViewById<FrameLayout>(R.id.frame)
 		sendBackButton.setOnClickListener {
 			val resultIntent = Intent()
 			resultIntent.putExtra("action", "openPaymentDetails")

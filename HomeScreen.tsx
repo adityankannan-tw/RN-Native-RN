@@ -151,16 +151,18 @@ const HomeScreen = () => {
           Click on the icon to send money
         </Text>
         {/* Only one UPI icon, triggers native flow */}
-        <TouchableOpacity
-          style={styles.upiCircle}
-          onPress={handleUPIIconPress}
-        >
-          <Image
-            source={require("./assets/upi-icon.png")}
-            style={styles.upiIcon}
-          />
-          <Text style={styles.upiText}>UPI</Text>
-        </TouchableOpacity>
+        {!showPaymentScreen && (
+          <TouchableOpacity
+            style={styles.upiCircle}
+            onPress={handleUPIIconPress}
+          >
+            <Image
+              source={require("./assets/upi-icon.png")}
+              style={styles.upiIcon}
+            />
+            <Text style={styles.upiText}>UPI</Text>
+          </TouchableOpacity>
+        )}
       </View>
       {response ? <Text style={styles.responseText}>{response}</Text> : null}
       {/* Show full screen payment details instead of modal */}
@@ -486,7 +488,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#d4591c",
+    backgroundColor: "#eba171",
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
@@ -499,13 +501,13 @@ const styles = StyleSheet.create({
     height: "90%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#d4591c",
+    backgroundColor: "#eba171",
     padding: 0,
     margin: 0,
   },
   fullScreenModalOverlay: {
     flex: 1,
-    backgroundColor: "#d4591c", // Orange background
+    backgroundColor: "#eba171", // Orange background
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
@@ -515,7 +517,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#d4591c", // Orange background
+    backgroundColor: "#eba171", // Orange background
     padding: 24,
   },
 });
