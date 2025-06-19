@@ -8,8 +8,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  Modal,
   Alert,
+  Modal,
 } from 'react-native';
 
 const { NativeBridge } = NativeModules;
@@ -17,7 +17,7 @@ const { NativeBridge } = NativeModules;
 const HomeScreen = () => {
   const [response, setResponse] = useState('');
   const [showPaymentForm, setShowPaymentForm] = useState(false);
-  const [name, setName] = useState('');
+  const [showPaymentScreen, setShowPaymentScreen] = useState(false);
   const [mobileNumber, setMobileNumber] = useState('');
   const [amount, setAmount] = useState('');
   const [errors, setErrors] = useState({
@@ -25,8 +25,16 @@ const HomeScreen = () => {
     amount: '',
   });
 
+  // Show response for 5 seconds only
+  useEffect(() => {
+    if (response) {
+      const timer = setTimeout(() => setResponse(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [response]);
+
   // Validate mobile number input
-  const handleMobileChange = (text) => {
+  const handleMobileChange = (text: string) => {
     // Remove any non-numeric characters
     const numericValue = text.replace(/[^0-9]/g, '');
     
@@ -44,12 +52,10 @@ const HomeScreen = () => {
   };
 
   // Validate amount input
-  const handleAmountChange = (text) => {
-    // Remove any non-numeric characters except decimal point
+  const handleAmountChange = (text: string) => {
     const cleanedText = text.replace(/[^0-9]/g, '');
-    
     setAmount(cleanedText);
-    
+
     // Validate amount
     const numAmount = Number(cleanedText);
     if (cleanedText === '') {
@@ -95,24 +101,36 @@ const HomeScreen = () => {
     return isValid;
   };
 
+  // Handler for UPI icon (open native UPIHomeView)
+  const handleUPIIconPress = () => {
+    NativeBridge.openUPIHomeScreen({}, (result: any) => {
+      if (result && result.action === 'openPaymentDetails') {
+        setShowPaymentScreen(true);
+      } else if (result && result.action === 'paymentSuccess') {
+        setResponse('Payment Successful!');
+        setMobileNumber('');
+        setAmount('');
+      }
+    });
+  };
+
+  // On Send Money, open native PIN screen
   const handleSendMoney = () => {
     if (!validateForm()) {
       return; // Don't proceed if validation fails
     }
-    
-    setShowPaymentForm(false); 
+    setShowPaymentScreen(false);
     const paymentData = {
-      name: name,
       mobileNumber: mobileNumber,
       amount: amount,
-      paymentType: 'UPI',
     };
     setTimeout(() => {
-      NativeBridge.openSwiftUIScreen(paymentData, (result: any) => {
-        setResponse(result.response);
-        setName('');
-        setMobileNumber('');
-        setAmount('');
+      NativeBridge.openPinScreen(paymentData, (result: any) => {
+        if (result && result.action === 'paymentSuccess') {
+          setResponse('Payment Successful!');
+          setMobileNumber('');
+          setAmount('');
+        }
       });
     }, 300);
   };
@@ -120,14 +138,16 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heroTitle}>React Native Screen</Text>
-
-      <Image source={require('./assets/icici-icon.png')} style={styles.bankIcon} />
-
+      <Image
+        source={require('./assets/icici-icon.png')}
+        style={styles.bankIcon}
+      />
       <View style={styles.centerContent}>
         <Text style={[styles.title, { color: '#d4591c' }]}>Click on the icon to send money</Text>
+        {/* Only one UPI icon, triggers native flow */}
         <TouchableOpacity
           style={styles.upiCircle}
-          onPress={() => setShowPaymentForm(true)}
+          onPress={handleUPIIconPress}
         >
           <Image
             source={require('./assets/upi-icon.png')}
@@ -136,23 +156,13 @@ const HomeScreen = () => {
           <Text style={styles.upiText}>UPI</Text>
         </TouchableOpacity>
       </View>
-
-      {response ? (
-        <Text style={styles.responseText}>
-          {response}
-        </Text>
-      ) : null}
-
-      <Modal
-        visible={showPaymentForm}
-        animationType="slide"
-        transparent
-        onRequestClose={() => setShowPaymentForm(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
+      {response ? <Text style={styles.responseText}>{response}</Text> : null}
+      {/* Show full screen payment details instead of modal */}
+      {showPaymentScreen && (
+        <View style={styles.fullScreenOverlay}>
+          <Text style={[styles.heroTitle, { marginTop: 20 }]}>React Native Screen</Text>
+          <View style={styles.fullScreenContent}>
             <Text style={styles.title}>Payment details</Text>
-
             <View style={styles.inputContainer}>
               <TextInput
                 style={styles.textInput}
@@ -167,7 +177,6 @@ const HomeScreen = () => {
                 <Text style={styles.errorText}>{errors.mobileNumber}</Text>
               ) : null}
             </View>
-
             <View style={styles.inputContainer}>
               <View style={styles.amountInputContainer}>
                 <Text style={styles.currencySymbol}>₹</Text>
@@ -184,7 +193,6 @@ const HomeScreen = () => {
                 <Text style={styles.errorText}>{errors.amount}</Text>
               ) : null}
             </View>
-
             <View style={styles.buttonRow}>
               <TouchableOpacity
                 style={[
@@ -195,8 +203,8 @@ const HomeScreen = () => {
                       !amount ||
                       errors.mobileNumber ||
                       errors.amount
-                        ? '#CCCCCC' // Light grey when disabled
-                        : 'white', // White when enabled
+                        ? '#CCCCCC'
+                        : 'white',
                   },
                 ]}
                 onPress={handleSendMoney}
@@ -216,22 +224,107 @@ const HomeScreen = () => {
                         !amount ||
                         errors.mobileNumber ||
                         errors.amount
-                          ? '#888888' // Darker grey text when disabled
-                          : '#d4591c', // Orange text when enabled (matching modal background)
+                          ? '#888888'
+                          : '#d4591c',
                     },
                   ]}
                 >
                   Send Money
                 </Text>
               </TouchableOpacity>
-
+              <TouchableOpacity
+                style={[styles.customButton, { backgroundColor: 'black' }]}
+                onPress={() => setShowPaymentScreen(false)}
+              >
+                <Text style={[styles.buttonText, { color: 'white' }]}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
+      <Modal
+        visible={showPaymentForm}
+        animationType="slide"
+        transparent={false} // Make modal non-transparent for full screen
+        onRequestClose={() => setShowPaymentForm(false)}
+      >
+        <View style={styles.fullScreenModalOverlay}>
+          <View style={styles.fullScreenModalContent}>
+            <Text style={styles.title}>Payment details</Text>
+            <View style={styles.inputContainer}>
+              <TextInput
+                style={styles.textInput}
+                placeholder="Mobile Number"
+                placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                value={mobileNumber}
+                onChangeText={handleMobileChange}
+                keyboardType="phone-pad"
+                maxLength={10}
+              />
+              {errors.mobileNumber ? (
+                <Text style={styles.errorText}>{errors.mobileNumber}</Text>
+              ) : null}
+            </View>
+            <View style={styles.inputContainer}>
+              <View style={styles.amountInputContainer}>
+                <Text style={styles.currencySymbol}>₹</Text>
+                <TextInput
+                  style={styles.amountInput}
+                  placeholder="Amount"
+                  placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                  value={amount}
+                  onChangeText={handleAmountChange}
+                  keyboardType="numeric"
+                />
+              </View>
+              {errors.amount ? (
+                <Text style={styles.errorText}>{errors.amount}</Text>
+              ) : null}
+            </View>
+            <View style={styles.buttonRow}>
+              <TouchableOpacity
+                style={[
+                  styles.customButton,
+                  {
+                    backgroundColor:
+                      !mobileNumber ||
+                      !amount ||
+                      !!errors.mobileNumber ||
+                      !!errors.amount
+                        ? '#CCCCCC'
+                        : 'white',
+                  },
+                ]}
+                onPress={handleSendMoney}
+                disabled={
+                  !mobileNumber ||
+                  !amount ||
+                  !!errors.mobileNumber ||
+                  !!errors.amount
+                }
+              >
+                <Text
+                  style={[
+                    styles.buttonText,
+                    {
+                      color:
+                        !mobileNumber ||
+                        !amount ||
+                        !!errors.mobileNumber ||
+                        !!errors.amount
+                          ? '#888888'
+                          : '#d4591c',
+                    },
+                  ]}
+                >
+                  Send Money
+                </Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.customButton, { backgroundColor: 'black' }]}
                 onPress={() => setShowPaymentForm(false)}
               >
-                <Text style={[styles.buttonText, { color: 'white' }]}>
-                  Cancel
-                </Text>
+                <Text style={[styles.buttonText, { color: 'white' }]}>Cancel</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -385,23 +478,43 @@ buttonText: {
     fontWeight: 'bold',
     fontSize: 18,
   },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.3)',
+  fullScreenOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#d4591c',
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
+    padding: -10,
+    margin: -10,
   },
-  modalContent: {
-    backgroundColor: '#d4591c',
-    padding: 24,
-    borderRadius: 24,
+  fullScreenContent: {
+    flex: 1,
     width: '90%',
+    height: '90%',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 10,
+    justifyContent: 'center',
+    backgroundColor: '#d4591c',
+    padding: 0,
+    margin: 0,
+  },
+  fullScreenModalOverlay: {
+    flex: 1,
+    backgroundColor: '#d4591c', // Orange background
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  fullScreenModalContent: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d4591c', // Orange background
+    padding: 24,
   },
 });
 

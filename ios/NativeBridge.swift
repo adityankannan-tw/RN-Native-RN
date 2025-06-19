@@ -12,24 +12,43 @@ class NativeBridge: NSObject {
   }
   
   @objc
-  func openSwiftUIScreen(_ data: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
+  func openUPIHomeScreen(_ data: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
     DispatchQueue.main.async {
-      let swiftUIView = SwiftUIView(data: data) { result in
+      let upiHomeView = UPIHomeView { result in
         callback([result])
       }
-      let hostingController = UIHostingController(rootView: swiftUIView)
+      let hostingController = UIHostingController(rootView: upiHomeView)
       hostingController.modalPresentationStyle = .fullScreen
-      
       let keyWindow = UIApplication.shared.connectedScenes
         .filter { $0.activationState == .foregroundActive }
         .compactMap { $0 as? UIWindowScene }
         .first?.windows
         .filter { $0.isKeyWindow }
         .first
-      
       if let rootViewController = keyWindow?.rootViewController {
         rootViewController.present(hostingController, animated: true)
       }
     }
   }
+
+  @objc
+  func openPinScreen(_ data: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
+    DispatchQueue.main.async {
+      let pinView = SwiftUIView(data: data) { result in
+        callback([result])
+      }
+      let hostingController = UIHostingController(rootView: pinView)
+      hostingController.modalPresentationStyle = .fullScreen
+      let keyWindow = UIApplication.shared.connectedScenes
+        .filter { $0.activationState == .foregroundActive }
+        .compactMap { $0 as? UIWindowScene }
+        .first?.windows
+        .filter { $0.isKeyWindow }
+        .first
+      if let rootViewController = keyWindow?.rootViewController {
+        rootViewController.present(hostingController, animated: true)
+      }
+    }
+  }
+  
 }

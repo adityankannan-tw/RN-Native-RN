@@ -127,7 +127,7 @@ struct SwiftUIView: View {
       // Submit button
       Button(action: {
         let result: NSDictionary = ["response": "Payment Successful", "enteredNumber": enteredNumber]
-        callback(result)
+        callback(["action": "paymentSuccess"])
         presentationMode.wrappedValue.dismiss()
       }) {
         Text("Submit")

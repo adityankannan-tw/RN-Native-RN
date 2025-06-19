@@ -12,6 +12,8 @@
 		1E1B4EE12E001D2000DC2F72 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1B4EE02E001D2000DC2F72 /* SwiftUIView.swift */; };
 		1E1B4EE32E001E4300DC2F72 /* NativeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1B4EE22E001E4300DC2F72 /* NativeBridge.m */; };
 		1EF8A6402E0304F1007F04B6 /* icici-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF8A63F2E0304F1007F04B6 /* icici-icon.png */; };
+		1EF8A6422E03E57B007F04B6 /* UPIHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF8A6412E03E57B007F04B6 /* UPIHomeView.swift */; };
+		1EF8A6462E03F0BB007F04B6 /* upi-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EF8A6452E03F0BB007F04B6 /* upi-icon.png */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		810F87714132D595550E03D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -30,6 +32,8 @@
 		1E1B4EE02E001D2000DC2F72 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		1E1B4EE22E001E4300DC2F72 /* NativeBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeBridge.m; path = RNWithSwiftUI/NativeBridge.m; sourceTree = "<group>"; };
 		1EF8A63F2E0304F1007F04B6 /* icici-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icici-icon.png"; sourceTree = "<group>"; };
+		1EF8A6412E03E57B007F04B6 /* UPIHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPIHomeView.swift; sourceTree = "<group>"; };
+		1EF8A6452E03F0BB007F04B6 /* upi-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upi-icon.png"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-RNWithSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNWithSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-RNWithSwiftUI/Pods-RNWithSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-RNWithSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNWithSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-RNWithSwiftUI/Pods-RNWithSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RNWithSwiftUI/AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				1E1B4EDE2E001CE600DC2F72 /* NativeBridge.swift */,
 				1E1B4EE02E001D2000DC2F72 /* SwiftUIView.swift */,
 				1E1B4EE22E001E4300DC2F72 /* NativeBridge.m */,
+				1EF8A6412E03E57B007F04B6 /* UPIHomeView.swift */,
+				1EF8A6452E03F0BB007F04B6 /* upi-icon.png */,
 			);
 			name = RNWithSwiftUI;
 			sourceTree = "<group>";
@@ -177,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF8A6402E0304F1007F04B6 /* icici-icon.png in Resources */,
+				1EF8A6462E03F0BB007F04B6 /* upi-icon.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				810F87714132D595550E03D0 /* PrivacyInfo.xcprivacy in Resources */,
@@ -269,6 +276,7 @@
 				1E1B4EE32E001E4300DC2F72 /* NativeBridge.m in Sources */,
 				1E1B4EDF2E001CE600DC2F72 /* NativeBridge.swift in Sources */,
 				1E1B4EE12E001D2000DC2F72 /* SwiftUIView.swift in Sources */,
+				1EF8A6422E03E57B007F04B6 /* UPIHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
